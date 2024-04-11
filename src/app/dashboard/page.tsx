@@ -27,7 +27,6 @@ export default function Home() {
     if (user.user != null) {
       get_transaction_data(user.user).then((transactions) => {setTransactionData(transactions)});
       get_user_data(user.user).then((userData) => setUserData(userData));
-      router.refresh()
     }
   }
 
