@@ -7,14 +7,18 @@ import { useEffect, useState } from "react";
 import { DocumentData, Timestamp} from "firebase/firestore";
 import { UserData, get_transaction_data, get_user_data, new_transaction } from "@/API/firebase_functions";
 import Transaction from "@/components/transaction";
+import { getAuth, signOut } from "firebase/auth";
+import firebase from "@/API/firebase_config";
 
 export default function Home() {
   const [transactionData, setTransactionData] = useState<null | {[id: string] : DocumentData}>(null);
   const [userData, setUserData] = useState<null |UserData >(null);
   const user = useAuthContext()
   const router =  useRouter()
+  const auth = getAuth(firebase)
 
   useEffect(() => {
+    console.log(auth.currentUser)
     if (user == null) router.push("/")
     else if (user.user != null) {
       get_transaction_data(user.user).then((transactions) => {setTransactionData(transactions)});
@@ -50,13 +54,7 @@ export default function Home() {
           </div>
           <div className="w-full h-1/3 rounded-2xl p-3 shadow-neutral-400 shadow-md flex flex-col mt-4">
             <div className="w-full h-full flex flex-col items-center justify-center">
-              <span className="text-3xl p-2 px-[15%] bg-neutral-900 bg-clip-text text-transparent font-medium">Add Transactions:</span>
-              {user.user != null && 
-              <div className="flex flex-row">
-                <button onClick={() => handle_transaction((user.user ? user.user.uid : ""), true)} className="p-4 bg-emerald-500 rounded-xl mx-3">Successful</button>
-                <button onClick={() => handle_transaction((user.user ? user.user.uid : ""), false)} className="p-4 bg-red-500 rounded-xl mx-3 ">Unsuccessful</button>
-              </div>
-              }
+              <button className="p-5 bg-teal-500 rounded-3xl" onClick={() => signOut(auth).then(() => router.push("/"))}>Sign Out</button>
             </div>
           </div>
         </div>

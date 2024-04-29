@@ -32,7 +32,8 @@ export default function main(){
         })
     }
     useEffect(() => {
-        if (user != null) router.push("/dashboard")
+
+        if (user.user != null) router.push("/dashboard")
     }, [user])
     return(
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-teal-200 from-20% via-emerald-100 via-80% to-emerald-200 backdrop-blur-lg">

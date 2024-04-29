@@ -26,8 +26,10 @@ export const AuthContextProvider: React.FC<AuthProps> = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user)
+                console.log("Set User!")
             } else {
                 setUser(null)
+                console.log("Cant Set User!")
             }
             setLoading(false)
         });
