@@ -13,7 +13,7 @@ const Transaction: React.FC<TransactionProps> = ({success, timestamp, balance}) 
             <span className="text-black w-2/6">{timestamp.toDate().toLocaleString()} </span>
             {success ? <span className="text-emerald-500 font-semibold w-3/6">Successful</span>
             : <span className="text-red-500 font-semibold w-3/6">Unsuccessful</span>}
-            <span className="text-black w-1/6">${balance}</span>
+            <span className="text-black w-1/6">${balance.toFixed(2)}</span>
         </div>
     )
 }

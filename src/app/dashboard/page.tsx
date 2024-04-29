@@ -47,7 +47,7 @@ export default function Home() {
           </div>
           <div className="w-full h-1/3 rounded-2xl p-3 shadow-neutral-400 shadow-md flex flex-col mt-4">
             <div className="w-full h-full flex flex-col items-center justify-center">
-              <span className="text-7xl p-2 px-[15%] bg-neutral-900 bg-clip-text text-transparent font-medium">${userData ? userData.balance : "0"}<span className="text-xl text-neutral-700">/ $100.00</span></span>
+              <span className="text-7xl p-2 px-[15%] bg-neutral-900 bg-clip-text text-transparent font-medium">${userData ? userData.balance.toFixed(2) : "0"}<span className="text-xl text-neutral-700">/ $100.00</span></span>
 
               <span className="text-lg text-neutral-600 font-semibold "> Total Balance</span>
             </div>
